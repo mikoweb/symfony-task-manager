@@ -7,7 +7,7 @@ use App\Core\Api\Dto\SuccessDto;
 use App\Core\Api\Dto\SuccessWithIdDto;
 use App\Core\Pagination\PaginationFactory;
 use App\Core\Pagination\PaginationRequest;
-use Doctrine\Common\Collections\Order;
+use App\Core\Pagination\SortDirection;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,7 +50,7 @@ abstract class RestController extends AbstractController
         mixed $queryBuilder,
         callable $itemsFactory,
         string $defaultSort,
-        string $defaultDirection = Order::Descending->value,
+        SortDirection $defaultDirection = SortDirection::DESC,
     ): Response {
         $paginationRequest = PaginationRequest::createFromRequest($request);
 
@@ -61,7 +61,7 @@ abstract class RestController extends AbstractController
             $paginationRequest->limit,
             [
                 'defaultSortFieldName' => $defaultSort,
-                'defaultSortDirection' => $defaultDirection,
+                'defaultSortDirection' => $defaultDirection->value,
             ],
         );
 
