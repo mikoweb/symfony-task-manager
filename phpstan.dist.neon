@@ -1,5 +1,8 @@
 parameters:
     level: max
+    excludePaths:
+        - tests/object-manager.php
+        - public/index.php
     paths:
         - bin/
         - config/
@@ -10,7 +13,3 @@ parameters:
         containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
     doctrine:
         objectManagerLoader: tests/object-manager.php
-    ignoreErrors:
-      - '/PHPDoc tag @method for method findBy\(\)/'
-      - '/PHPDoc tag @method for method findOneBy\(\)/'
-      - '/::\$id is never written, only read/'
