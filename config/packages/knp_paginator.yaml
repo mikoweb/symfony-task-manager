@@ -1,0 +1,6 @@
+knp_paginator:
+    default_options:
+        sort_field_name: 'sort'
+        sort_direction_name: 'direction'
+        filter_field_name: '=disabled'
+        filter_value_name: '=disabled'
