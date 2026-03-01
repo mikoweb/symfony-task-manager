@@ -1,6 +1,7 @@
 parameters:
     level: max
     excludePaths:
+        - config/reference.php
         - tests/object-manager.php
         - public/index.php
     paths:
