@@ -32,6 +32,10 @@
         "symfony/yaml": "7.4.*"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.94",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
         "symfony/maker-bundle": "^1.66",
         "symfony/phpunit-bridge": "^8.0",
         "symfony/web-profiler-bundle": "7.4.*"
@@ -75,6 +79,15 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "code-check": [
+            "./vendor/bin/php-cs-fixer check -vvv"
+        ],
+        "code-fix": [
+            "./vendor/bin/php-cs-fixer fix"
+        ],
+        "phpstan": [
+            "./vendor/bin/phpstan"
         ]
     },
     "conflict": {
