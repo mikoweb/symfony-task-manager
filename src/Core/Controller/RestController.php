@@ -32,7 +32,7 @@ abstract class RestController extends AbstractController
 
     protected function createSuccessWithIdView(
         string $message,
-        string $id,
+        int|string $id,
         int $status = Response::HTTP_OK,
     ): JsonResponse {
         return $this->json(new SuccessWithIdDto($message, $id), $status);
