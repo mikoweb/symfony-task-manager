@@ -3,9 +3,15 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    App:
+                    Task:
                         type: attribute
                         is_bundle: false
-                        dir: '%kernel.project_dir%/src/Domain/Entity'
-                        prefix: 'App\Domain\Entity'
-                        alias: App
+                        dir: '%kernel.project_dir%/src/Domain/Task/Entity'
+                        prefix: 'App\Domain\Task\Entity'
+                        alias: Task
+                    User:
+                        type: attribute
+                        is_bundle: false
+                        dir: '%kernel.project_dir%/src/Domain/User/Entity'
+                        prefix: 'App\Domain\User\Entity'
+                        alias: User
