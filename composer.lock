@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d109569b05384b4a74aa11527e33b337",
+    "content-hash": "3119778aa43d89048e97e4b58e93993e",
     "packages": [
         {
             "name": "doctrine/collections",
@@ -1822,16 +1822,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "6.0.1",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "2f5cbed597cb261d1ea458f3da3a9ad32e670b1e"
+                "reference": "897b5986ece6b4f9d8413fea345c7d49c757d6bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/2f5cbed597cb261d1ea458f3da3a9ad32e670b1e",
-                "reference": "2f5cbed597cb261d1ea458f3da3a9ad32e670b1e",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/897b5986ece6b4f9d8413fea345c7d49c757d6bf",
+                "reference": "897b5986ece6b4f9d8413fea345c7d49c757d6bf",
                 "shasum": ""
             },
             "require": {
@@ -1881,9 +1881,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/6.0.1"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/6.0.2"
             },
-            "time": "2026-01-20T15:30:42+00:00"
+            "time": "2026-03-01T18:43:49+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3812,6 +3812,185 @@
                 }
             ],
             "time": "2026-02-25T16:50:00+00:00"
+        },
+        {
+            "name": "symfony/http-client",
+            "version": "v7.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-client.git",
+                "reference": "2bde8afd5ab2fe0b05a9c2d4c3c0e28ceb98a154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/2bde8afd5ab2fe0b05a9c2d4c3c0e28ceb98a154",
+                "reference": "2bde8afd5ab2fe0b05a9c2d4c3c0e28ceb98a154",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "psr/log": "^1|^2|^3",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/http-client-contracts": "~3.4.4|^3.5.2",
+                "symfony/polyfill-php83": "^1.29",
+                "symfony/service-contracts": "^2.5|^3"
+            },
+            "conflict": {
+                "amphp/amp": "<2.5",
+                "amphp/socket": "<1.1",
+                "php-http/discovery": "<1.15",
+                "symfony/http-foundation": "<6.4"
+            },
+            "provide": {
+                "php-http/async-client-implementation": "*",
+                "php-http/client-implementation": "*",
+                "psr/http-client-implementation": "1.0",
+                "symfony/http-client-implementation": "3.0"
+            },
+            "require-dev": {
+                "amphp/http-client": "^4.2.1|^5.0",
+                "amphp/http-tunnel": "^1.0|^2.0",
+                "guzzlehttp/promises": "^1.4|^2.0",
+                "nyholm/psr7": "^1.0",
+                "php-http/httplug": "^1.0|^2.0",
+                "psr/http-client": "^1.0",
+                "symfony/amphp-http-client-meta": "^1.0|^2.0",
+                "symfony/cache": "^6.4|^7.0|^8.0",
+                "symfony/dependency-injection": "^6.4|^7.0|^8.0",
+                "symfony/http-kernel": "^6.4|^7.0|^8.0",
+                "symfony/messenger": "^6.4|^7.0|^8.0",
+                "symfony/process": "^6.4|^7.0|^8.0",
+                "symfony/rate-limiter": "^6.4|^7.0|^8.0",
+                "symfony/stopwatch": "^6.4|^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\HttpClient\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "http"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/http-client/tree/v7.4.6"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-02-18T09:46:18+00:00"
+        },
+        {
+            "name": "symfony/http-client-contracts",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-client-contracts.git",
+                "reference": "75d7043853a42837e68111812f4d964b01e5101c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/75d7043853a42837e68111812f4d964b01e5101c",
+                "reference": "75d7043853a42837e68111812f4d964b01e5101c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
+                "branch-alias": {
+                    "dev-main": "3.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Contracts\\HttpClient\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Test/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Generic abstractions related to HTTP clients",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "interfaces",
+                "interoperability",
+                "standards"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/http-client-contracts/tree/v3.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-04-29T11:18:49+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -6834,16 +7013,16 @@
         },
         {
             "name": "zircote/swagger-php",
-            "version": "5.8.2",
+            "version": "5.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zircote/swagger-php.git",
-                "reference": "18ee6592518238a5a6c9905aae4926d5bbc65754"
+                "reference": "098223019f764a16715f64089a58606096719c98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/18ee6592518238a5a6c9905aae4926d5bbc65754",
-                "reference": "18ee6592518238a5a6c9905aae4926d5bbc65754",
+                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/098223019f764a16715f64089a58606096719c98",
+                "reference": "098223019f764a16715f64089a58606096719c98",
                 "shasum": ""
             },
             "require": {
@@ -6916,7 +7095,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zircote/swagger-php/issues",
-                "source": "https://github.com/zircote/swagger-php/tree/5.8.2"
+                "source": "https://github.com/zircote/swagger-php/tree/5.8.3"
             },
             "funding": [
                 {
@@ -6924,7 +7103,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-10T20:10:15+00:00"
+            "time": "2026-03-02T00:47:18+00:00"
         }
     ],
     "packages-dev": [
