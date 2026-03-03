@@ -6,19 +6,13 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\HttpOptions;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-readonly class JSONPlaceholderClientService implements JSONPlaceholderClient
+final class JSONPlaceholderClientService implements JSONPlaceholderClient
 {
-    private const string BASE_URI = 'https://jsonplaceholder.typicode.com';
+    private ?HttpClientInterface $client = null;
 
-    private HttpClientInterface $client;
-
-    public function __construct()
-    {
-        $this->client = HttpClient::create(
-            new HttpOptions()
-                ->setBaseUri(self::BASE_URI)
-                ->toArray()
-        );
+    public function __construct(
+        private readonly ConfigFactory $configFactory,
+    ) {
     }
 
     /**
@@ -28,10 +22,26 @@ readonly class JSONPlaceholderClientService implements JSONPlaceholderClient
      */
     public function request(string $method, string $path, array $options = []): array|object
     {
+        $client = $this->initClient();
         /** @var object[]|object $data */
-        $data = $this->client->request($method, $path, $options)->getContent()
+        $data = $client->request($method, $path, $options)->getContent()
             |> json_decode(...);
 
         return $data;
+    }
+
+    private function initClient(): HttpClientInterface
+    {
+        if (is_null($this->client)) {
+            $config = $this->configFactory->create();
+
+            $this->client = HttpClient::create(
+                new HttpOptions()
+                    ->setBaseUri($config->baseUri)
+                    ->toArray()
+            );
+        }
+
+        return $this->client;
     }
 }

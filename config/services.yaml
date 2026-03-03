@@ -11,7 +11,8 @@ imports:
     - { resource: '../src/Infrastructure/config/services.yaml' }
 
 parameters:
-    locale: '%env(resolve:LOCALE)%'
+    locale: '%env(string:LOCALE)%'
+    json_placeholder_base_uri: '%env(string:JSON_PLACEHOLDER_BASE_URI)%'
 
 services:
     # default configuration for services in *this* file
