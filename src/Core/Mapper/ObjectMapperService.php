@@ -3,11 +3,14 @@
 namespace App\Core\Mapper;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use stdClass;
+use Symfony\Component\Serializer\SerializerInterface;
 
 final readonly class ObjectMapperService implements ObjectMapper
 {
     public function __construct(
         private DenormalizerInterface $denormalizer,
+        private SerializerInterface $serializer,
     ) {
     }
 
@@ -17,12 +20,25 @@ final readonly class ObjectMapperService implements ObjectMapper
      */
     public function map(object|array $data, string $targetClass, ?array $groups = null): object
     {
-        /** @var object $object */
-        $object = $this->denormalizer->denormalize(
-            $data,
-            $targetClass,
-            context: is_null($groups) ? [] : ['groups' => $groups],
-        );
+        if (is_array($data) || $data instanceof stdClass) {
+            /** @var object $object */
+            $object = $this->denormalizer->denormalize(
+                $data,
+                $targetClass,
+                context: is_null($groups) ? [] : ['groups' => $groups],
+            );
+        } else {
+            /** @var object $object */
+            $object = $this->serializer->deserialize(
+                $this->serializer->serialize(
+                    $data,
+                    'json',
+                    context: is_null($groups) ? [] : ['groups' => $groups],
+                ),
+                $targetClass,
+                'json'
+            );
+        }
 
         return $object;
     }
