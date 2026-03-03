@@ -54,11 +54,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\Column(name: 'json_placeholder_id', type: Types::INTEGER, unique: true, nullable: true)]
     private ?int $jsonPlaceholderId = null;
 
-    #[ORM\ManyToOne(targetEntity: Address::class, inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: Address::class, cascade: ['persist'], inversedBy: 'users')]
     #[ORM\JoinColumn(name: 'address_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     private ?Address $address = null;
 
-    #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'], inversedBy: 'users')]
     #[ORM\JoinColumn(name: 'company_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     private ?Company $company = null;
 
