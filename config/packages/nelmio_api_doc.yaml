@@ -5,6 +5,14 @@ when@dev:
                 title: Task Manager REST API
                 description: REST API
                 version: 0.0.1
+            components:
+                securitySchemes:
+                    Bearer:
+                        type: http
+                        scheme: bearer
+                        bearerFormat: JWT
+            security:
+                - Bearer: []
         areas:
             default:
                 path_patterns:
