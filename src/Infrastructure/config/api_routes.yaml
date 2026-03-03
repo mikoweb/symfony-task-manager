@@ -1,3 +1,7 @@
 api_login:
     resource: routes/login.yaml
     prefix: /
+
+api_logged_user:
+    resource: routes/logged_user.yaml
+    prefix: /logged-user

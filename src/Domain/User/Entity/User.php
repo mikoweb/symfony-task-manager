@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ORMUserRepository::class)]
@@ -25,30 +26,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[Groups(['list'])]
     private Uuid $id;
 
     #[ORM\Column(name: 'email', type: Types::STRING)]
+    #[Groups(['list'])]
     private string $email;
 
     /**
      * @var string[]
      */
     #[ORM\Column(name: 'roles', type: Types::JSON)]
+    #[Groups(['list'])]
     private array $roles = [];
 
     #[ORM\Column(name: 'password', type: Types::STRING, nullable: true)]
     private ?string $password = null;
 
     #[ORM\Column(name: 'name', type: Types::STRING, nullable: true)]
+    #[Groups(['list'])]
     private ?string $name;
 
     #[ORM\Column(name: 'nickname', type: Types::STRING, nullable: true)]
+    #[Groups(['list'])]
     private ?string $nickname;
 
     #[ORM\Column(name: 'phone', type: Types::STRING, nullable: true)]
+    #[Groups(['list'])]
     private ?string $phone = null;
 
     #[ORM\Column(name: 'website', type: Types::STRING, nullable: true)]
+    #[Groups(['list'])]
     private ?string $website = null;
 
     #[ORM\Column(name: 'json_placeholder_id', type: Types::INTEGER, unique: true, nullable: true)]
@@ -56,10 +64,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
 
     #[ORM\ManyToOne(targetEntity: Address::class, cascade: ['persist'], inversedBy: 'users')]
     #[ORM\JoinColumn(name: 'address_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['list'])]
     private ?Address $address = null;
 
     #[ORM\ManyToOne(targetEntity: Company::class, cascade: ['persist'], inversedBy: 'users')]
     #[ORM\JoinColumn(name: 'company_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['list'])]
     private ?Company $company = null;
 
     public function getId(): Uuid

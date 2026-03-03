@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ORMCompanyRepository::class)]
@@ -23,15 +24,19 @@ class Company implements Timestampable
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[Groups(['list'])]
     private Uuid $id;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $name;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $catchPhrase;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $bs;
 
     /**

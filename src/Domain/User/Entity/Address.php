@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ORMAddressRepository::class)]
@@ -23,24 +24,31 @@ class Address implements Timestampable
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[Groups(['list'])]
     private Uuid $id;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $street;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $suite;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $city;
 
     #[ORM\Column(type: Types::STRING)]
+    #[Groups(['list'])]
     private string $zipcode;
 
     #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    #[Groups(['list'])]
     private ?float $lat = null;
 
     #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    #[Groups(['list'])]
     private ?float $lng = null;
 
     /**

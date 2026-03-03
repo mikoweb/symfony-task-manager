@@ -1,0 +1,4 @@
+api_logged_user_get_user_data:
+    path: /user-data
+    controller: App\Application\User\Controller\LoggedUserController::getUserData
+    methods: [GET]
