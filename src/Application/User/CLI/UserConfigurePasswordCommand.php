@@ -2,7 +2,7 @@
 
 namespace App\Application\User\CLI;
 
-use App\Application\User\Interaction\Command\ConfigureUserRoles\ConfigureUserRolesCommand;
+use App\Application\User\Interaction\Command\ConfigureUserPassword\ConfigureUserPasswordCommand;
 use App\Core\Bus\CommandBus;
 use App\Domain\User\UserRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -14,10 +14,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 #[AsCommand(
-    name: 'app:user:configure-roles',
-    description: 'Configure roles for users',
+    name: 'app:user:configure-password',
+    description: 'Configure password for a user',
 )]
-class UserConfigureRolesCommand extends Command
+class UserConfigurePasswordCommand extends Command
 {
     public function __construct(
         private readonly UserRepository $userRepository,
@@ -30,7 +30,7 @@ class UserConfigureRolesCommand extends Command
     {
         $this
             ->addArgument('email', InputArgument::REQUIRED, 'User Email')
-            ->addArgument('roles', InputArgument::IS_ARRAY, 'User Roles Array')
+            ->addArgument('password', InputArgument::REQUIRED, 'User Password')
         ;
     }
 
@@ -39,8 +39,8 @@ class UserConfigureRolesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         /** @var string $email */
         $email = $input->getArgument('email');
-        /** @var string[] $roles */
-        $roles = $input->getArgument('roles');
+        /** @var string $password */
+        $password = $input->getArgument('password');
 
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
@@ -51,14 +51,14 @@ class UserConfigureRolesCommand extends Command
         }
 
         try {
-            $this->commandBus->dispatch(new ConfigureUserRolesCommand($user->getId(), $roles));
+            $this->commandBus->dispatch(new ConfigureUserPasswordCommand($user->getId(), $password));
         } catch (ValidationFailedException $exception) {
             $io->error($exception->getViolations()->get(0)->getMessage());
 
             return Command::FAILURE;
         }
 
-        $io->success(sprintf('The following roles have been set for user `%s`: [%s]', $email, implode(', ', $roles)));
+        $io->success(sprintf('User `%s` password configured ', $email));
 
         return Command::SUCCESS;
     }
