@@ -22,6 +22,7 @@ final class UserDto
         public readonly string $name,
 
         #[Assert\NotBlank]
+        #[Map(target: 'nickname')]
         public readonly string $username,
 
         #[Assert\NotBlank]

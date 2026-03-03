@@ -42,8 +42,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\Column(name: 'name', type: Types::STRING, nullable: true)]
     private ?string $name;
 
-    #[ORM\Column(name: 'username', type: Types::STRING, nullable: true)]
-    private ?string $username;
+    #[ORM\Column(name: 'nickname', type: Types::STRING, nullable: true)]
+    private ?string $nickname;
 
     #[ORM\Column(name: 'phone', type: Types::STRING, nullable: true)]
     private ?string $phone = null;
@@ -131,14 +131,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
-    public function getUsername(): ?string
+    public function getNickname(): ?string
     {
-        return $this->username;
+        return $this->nickname;
     }
 
-    public function setUsername(?string $username): self
+    public function setNickname(?string $nickname): self
     {
-        $this->username = $username;
+        $this->nickname = $nickname;
 
         return $this;
     }
