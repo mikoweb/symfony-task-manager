@@ -24,9 +24,11 @@ final readonly class TaskMapper
             $this->objectMapper->map($dto, $task);
         }
 
-        if (!is_null($dto->assignedUserId)) {
-            $task->setAssignedUser($this->userRepository->find($dto->assignedUserId));
-        }
+        $task->setAssignedUser(
+            !is_null($dto->assignedUserId)
+                ? $this->userRepository->find($dto->assignedUserId)
+                : null
+        );
 
         return $task;
     }
