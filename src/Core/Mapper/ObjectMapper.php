@@ -11,8 +11,8 @@ interface ObjectMapper
     public function map(array|object $data, string $targetClass, ?array $groups = null): object;
 
     /**
-     * @param array<mixed[]|object> $source
-     * @param array<string>|null    $groups
+     * @param mixed[]            $source
+     * @param array<string>|null $groups
      *
      * @return object[]
      */
