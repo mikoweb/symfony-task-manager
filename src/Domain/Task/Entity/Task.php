@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ORMTaskRepository::class)]
@@ -23,17 +24,21 @@ class Task implements Timestampable
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[Groups(['list'])]
     private Uuid $id;
 
     #[ORM\Column(name: 'name', type: Types::STRING)]
+    #[Groups(['list'])]
     private string $name;
 
     #[ORM\Column(name: 'description', type: Types::TEXT)]
+    #[Groups(['list'])]
     private string $description;
 
     #[ORM\Column(name: 'status', type: Types::SMALLINT, enumType: TaskStatus::class)]
     private TaskStatus $status = TaskStatus::TO_DO;
 
+    #[Groups(['list'])]
     public string $workflowStatus {
         get => $this->status->getLabel();
         set(string $status) {
@@ -43,6 +48,7 @@ class Task implements Timestampable
 
     #[ORM\JoinColumn(name: 'assigned_user_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[ORM\ManyToOne(targetEntity: User::class)]
+    #[Groups(['list'])]
     private ?User $assignedUser = null;
 
     public function getId(): Uuid

@@ -1,0 +1,29 @@
+api_task_admin_list:
+    path: /task-admin
+    controller: App\Application\Task\Controller\AdminTaskController::list
+    methods: [GET]
+
+api_task_admin_get:
+    path: /task-admin/{id}
+    controller: App\Application\Task\Controller\AdminTaskController::get
+    methods: [GET]
+
+api_task_admin_create:
+    path: /task-admin
+    controller: App\Application\Task\Controller\AdminTaskController::create
+    methods: [POST]
+
+api_task_admin_update:
+    path: /task-admin/{id}
+    controller: App\Application\Task\Controller\AdminTaskController::update
+    methods: [PATCH]
+
+api_task_admin_delete:
+    path: /task-admin/{id}
+    controller: App\Application\Task\Controller\AdminTaskController::delete
+    methods: [DELETE]
+
+api_task_admin_change_status:
+    path: /task-admin/{id}/change-status
+    controller: App\Application\Task\Controller\AdminTaskController::changeStatus
+    methods: [PATCH]

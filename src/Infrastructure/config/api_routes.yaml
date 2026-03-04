@@ -5,3 +5,11 @@ api_login:
 api_logged_user:
     resource: routes/logged_user.yaml
     prefix: /logged-user
+
+api_task_admin:
+    resource: routes/task_admin.yaml
+    prefix: /
+
+api_task_user:
+    resource: routes/task_user.yaml
+    prefix: /

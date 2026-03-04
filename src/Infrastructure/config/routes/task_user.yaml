@@ -1,0 +1,14 @@
+api_task_list:
+    path: /task
+    controller: App\Application\Task\Controller\UserTaskController::list
+    methods: [GET]
+
+api_task_get:
+    path: /task/{id}
+    controller: App\Application\Task\Controller\UserTaskController::get
+    methods: [GET]
+
+api_task_change_status:
+    path: /task/{id}/change-status
+    controller: App\Application\Task\Controller\UserTaskController::changeStatus
+    methods: [PATCH]
