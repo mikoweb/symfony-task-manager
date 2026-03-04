@@ -40,7 +40,7 @@ abstract class History
     #[ORM\Column(name: 'changes', type: Types::JSON)]
     protected array $changes;
 
-    #[ORM\Column(name: 'changed_by_id', type: UuidType::NAME, index: true)]
+    #[ORM\Column(name: 'changed_by_id', type: UuidType::NAME, nullable: true, index: true)]
     protected ?Uuid $changedById;
 
     /**
