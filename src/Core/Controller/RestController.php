@@ -17,8 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class RestController extends AbstractController
 {
-    protected const string COMMON_EXCEPTION_MESSAGE = 'Something went wrong...';
-
     public function __construct(
         protected readonly PaginatorInterface $paginator,
         protected readonly PaginationFactory $paginationFactory,
