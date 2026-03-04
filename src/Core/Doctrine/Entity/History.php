@@ -40,6 +40,9 @@ abstract class History
     #[ORM\Column(name: 'changes', type: Types::JSON)]
     protected array $changes;
 
+    #[ORM\Column(name: 'changed_by_id', type: UuidType::NAME, index: true)]
+    protected ?Uuid $changedById;
+
     /**
      * @param T|null               $related
      * @param array<string, mixed> $changes
@@ -92,5 +95,10 @@ abstract class History
     public function getChanges(): array
     {
         return $this->changes;
+    }
+
+    public function getChangedById(): ?Uuid
+    {
+        return $this->changedById;
     }
 }
