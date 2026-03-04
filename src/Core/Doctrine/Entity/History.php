@@ -53,12 +53,14 @@ abstract class History
         HistoryType $type,
         DateTimeImmutable $date,
         array $changes,
+        ?Uuid $changedById,
     ) {
         $this->relatedObject = $related;
         $this->relatedId = $relatedId;
         $this->type = $type;
         $this->date = $date;
         $this->changes = $changes;
+        $this->changedById = $changedById;
     }
 
     public function getId(): Uuid
