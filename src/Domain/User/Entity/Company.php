@@ -45,14 +45,8 @@ class Company implements Timestampable
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'company')]
     private Collection $users;
 
-    public function __construct(
-        string $name,
-        string $catchPhrase,
-        string $bs,
-    ) {
-        $this->name = $name;
-        $this->catchPhrase = $catchPhrase;
-        $this->bs = $bs;
+    public function __construct()
+    {
         $this->users = new ArrayCollection();
     }
 

@@ -57,16 +57,8 @@ class Address implements Timestampable
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'address')]
     private Collection $users;
 
-    public function __construct(
-        string $street,
-        string $suite,
-        string $city,
-        string $zipcode,
-    ) {
-        $this->street = $street;
-        $this->suite = $suite;
-        $this->city = $city;
-        $this->zipcode = $zipcode;
+    public function __construct()
+    {
         $this->users = new ArrayCollection();
     }
 

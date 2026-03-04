@@ -32,7 +32,7 @@ class Task implements Timestampable
     private string $description;
 
     #[ORM\Column(name: 'status', type: Types::SMALLINT, enumType: TaskStatus::class)]
-    private TaskStatus $status;
+    private TaskStatus $status = TaskStatus::TO_DO;
 
     public string $workflowStatus {
         get => $this->status->getLabel();
@@ -43,19 +43,7 @@ class Task implements Timestampable
 
     #[ORM\JoinColumn(name: 'assigned_user_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[ORM\ManyToOne(targetEntity: User::class)]
-    private ?User $assignedUser;
-
-    public function __construct(
-        string $name,
-        string $description,
-        TaskStatus $status = TaskStatus::TO_DO,
-        ?User $assignedUser = null,
-    ) {
-        $this->name = $name;
-        $this->description = $description;
-        $this->status = $status;
-        $this->assignedUser = $assignedUser;
-    }
+    private ?User $assignedUser = null;
 
     public function getId(): Uuid
     {
