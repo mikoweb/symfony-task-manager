@@ -21,6 +21,10 @@ final class EntityExistValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, EntityExist::class);
         }
 
+        if (is_null($value)) {
+            return;
+        }
+
         $id = match (gettype($value)) {
             'string', 'integer' => $value,
             'object' => $value instanceof Uuid ? $value->toString() : '',
