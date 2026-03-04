@@ -1,4 +1,5 @@
 imports:
     - { resource: 'doctrine.yaml' }
+    - { resource: 'workflow.yaml' }
 
 services: ~

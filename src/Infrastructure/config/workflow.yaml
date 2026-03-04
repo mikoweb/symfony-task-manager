@@ -1,0 +1,29 @@
+framework:
+    workflows:
+        task_status:
+            type: 'state_machine'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'method'
+                property: 'workflowStatus'
+            supports:
+                - App\Domain\Task\Entity\Task
+            initial_marking: to_do
+            places:
+                - to_do
+                - in_progress
+                - done
+            transitions:
+                start:
+                    from: to_do
+                    to: in_progress
+                complete:
+                    from: in_progress
+                    to: done
+                reopen:
+                    from: done
+                    to: to_do
+                abandon:
+                    from: in_progress
+                    to: to_do
