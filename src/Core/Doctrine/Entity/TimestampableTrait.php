@@ -10,12 +10,12 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 trait TimestampableTrait
 {
-    #[Groups(['timestampable'])]
+    #[Groups(['timestampable', 'list'])]
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_IMMUTABLE, nullable: true)]
     protected ?DateTimeImmutable $createdAt;
 
-    #[Groups(['timestampable'])]
+    #[Groups(['timestampable', 'list'])]
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(name: 'updated_at', type: Types::DATETIME_IMMUTABLE, nullable: true)]
     protected ?DateTimeImmutable $updatedAt;
