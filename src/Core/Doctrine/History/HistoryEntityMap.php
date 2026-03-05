@@ -7,7 +7,7 @@ use UnexpectedValueException;
 final readonly class HistoryEntityMap
 {
     /**
-     * @param array<string, string|null> $map
+     * @param array<string, mixed> $map
      */
     public function __construct(
         private array $map,
