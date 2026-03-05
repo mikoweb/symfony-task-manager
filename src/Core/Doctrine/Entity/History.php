@@ -35,7 +35,7 @@ abstract class History
     protected DateTimeImmutable $date;
 
     /**
-     * @var array<string, mixed>
+     * @var array<string, array{old: mixed, new: mixed}>
      */
     #[ORM\Column(name: 'changes', type: Types::JSON)]
     protected array $changes;
@@ -44,8 +44,8 @@ abstract class History
     protected ?Uuid $changedById;
 
     /**
-     * @param T|null               $related
-     * @param array<string, mixed> $changes
+     * @param T|null                                       $related
+     * @param array<string, array{old: mixed, new: mixed}> $changes
      */
     public function __construct(
         ?object $related,
@@ -92,7 +92,7 @@ abstract class History
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, array{old: mixed, new: mixed}>
      */
     public function getChanges(): array
     {
