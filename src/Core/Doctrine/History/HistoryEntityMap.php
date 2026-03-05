@@ -31,7 +31,7 @@ final readonly class HistoryEntityMap
             throw new UnexpectedValueException(sprintf('Entity `%s` there is no defined history.', $entityClass));
         }
 
-        if (isset($this->map[$entityClass]) || is_null($this->map[$entityClass])) {
+        if (is_string($this->map[$entityClass]) || is_null($this->map[$entityClass])) {
             return $this->map[$entityClass];
         }
 
