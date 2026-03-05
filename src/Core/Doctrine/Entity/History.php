@@ -90,9 +90,22 @@ abstract class History
         return $this->relatedId;
     }
 
+    /**
+     * @param class-string $className
+     */
+    public function testRelatedType(string $className): bool
+    {
+        return $this->getRelatedObject() instanceof $className;
+    }
+
     public function getType(): HistoryType
     {
         return $this->type;
+    }
+
+    public function testType(HistoryType $type): bool
+    {
+        return $this->getType() === $type;
     }
 
     public function getDate(): DateTimeImmutable
