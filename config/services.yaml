@@ -27,3 +27,20 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Core\Doctrine\History\HistoryEntityMap:
+        arguments:
+            -
+                App\Domain\Task\Entity\Task: App\Domain\Task\Entity\TaskHistory
+
+    App\Core\Doctrine\History\HistoryNormalizerComposite:
+        calls:
+            -   method: add
+                arguments: ['@App\Core\Doctrine\History\Normalizer\NullNormalizer']
+            -   method: add
+                arguments: ['@App\Core\Doctrine\History\Normalizer\ScalarNormalizer']
+            -   method: add
+                arguments: ['@App\Core\Doctrine\History\Normalizer\DateTimeNormalizer']
+            -   method: add
+                arguments: ['@App\Core\Doctrine\History\Normalizer\EnumNormalizer']
+            -   method: add
+                arguments: ['@App\Core\Doctrine\History\Normalizer\ObjectNormalizer']
