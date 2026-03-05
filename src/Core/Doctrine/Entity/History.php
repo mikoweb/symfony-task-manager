@@ -125,4 +125,17 @@ abstract class History
     {
         return $this->changedById;
     }
+
+    public function isFieldChanged(string $fieldName): bool
+    {
+        return array_key_exists($fieldName, $this->changes);
+    }
+
+    /**
+     * @return array{old: mixed, new: mixed}|null
+     */
+    public function getChangedField(string $fieldName): ?array
+    {
+        return $this->isFieldChanged($fieldName) ? $this->changes[$fieldName] : null;
+    }
 }
