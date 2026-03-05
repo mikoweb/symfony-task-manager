@@ -8,6 +8,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -26,21 +28,28 @@ abstract class History
      * @var T|null
      */
     protected ?object $relatedObject;
+
+    #[Groups(['list'])]
+    #[SerializedName('id')]
     protected mixed $relatedId;
 
     #[ORM\Column(name: 'type', type: Types::STRING, length: 10, enumType: HistoryType::class)]
+    #[Groups(['list'])]
     protected HistoryType $type;
 
     #[ORM\Column(name: 'date', type: Types::DATETIME_IMMUTABLE)]
+    #[Groups(['list'])]
     protected DateTimeImmutable $date;
 
     /**
      * @var array<string, array{old: mixed, new: mixed}>
      */
     #[ORM\Column(name: 'changes', type: Types::JSON)]
+    #[Groups(['list'])]
     protected array $changes;
 
     #[ORM\Column(name: 'changed_by_id', type: UuidType::NAME, nullable: true, index: true)]
+    #[Groups(['list'])]
     protected ?Uuid $changedById;
 
     /**

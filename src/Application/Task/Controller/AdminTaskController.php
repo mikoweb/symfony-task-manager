@@ -5,6 +5,7 @@ namespace App\Application\Task\Controller;
 use App\Application\Task\Dto\ChangeTaskStatusDto;
 use App\Application\Task\Dto\CreateTaskDto;
 use App\Application\Task\Dto\TaskDetailsDto;
+use App\Application\Task\Dto\TaskHistoryDto;
 use App\Application\Task\Dto\UpdateTaskDto;
 use App\Application\Task\Interaction\Command\ChangeTaskStatus\ChangeTaskStatusCommand;
 use App\Application\Task\Interaction\Command\CreateTask\CreateTaskCommand;
@@ -18,6 +19,8 @@ use App\Core\Controller\RestController;
 use App\Core\Mapper\ObjectMapper;
 use App\Domain\Task\Entity\Task;
 use App\Domain\User\UserRoleName;
+use App\Infrastructure\Task\Query\Decorator\HistoryTaskQueryDecorator;
+use App\Infrastructure\Task\Query\ListHistoryTaskQueryFactory;
 use App\Infrastructure\Task\Query\ListTaskQueryFactory;
 use Nelmio\ApiDocBundle\Attribute\Model;
 use OpenApi\Attributes as OA;
@@ -176,5 +179,35 @@ final class AdminTaskController extends RestController
         }
 
         return $this->createSuccessView('Task status has been changed');
+    }
+
+    #[OA\Tag(name: 'Task:Admin')]
+    #[OA\Parameter(name: 'page', in: 'query')]
+    #[OA\Parameter(name: 'limit', in: 'query')]
+    #[OA\Response(
+        response: 200,
+        description: 'Paginated list of Task History',
+        content: new OA\JsonContent(
+            properties: [
+                new OA\Property(property: 'items', type: 'array', items: new OA\Items(
+                    ref: new Model(type: TaskHistoryDto::class)
+                )),
+            ],
+            type: 'object',
+            anyOf: [new OA\Schema(ref: new Model(type: OpenApiPagination::class))]
+        )
+    )]
+    public function listHistory(
+        Request $request,
+        Uuid $id,
+        ListHistoryTaskQueryFactory $queryFactory,
+        ObjectMapper $objectMapper,
+    ): Response {
+        return $this->paginate(
+            $request,
+            new HistoryTaskQueryDecorator($id, $queryFactory)->create(),
+            fn (array $tasks): array => $objectMapper->mapAny($tasks, TaskHistoryDto::class, ['list']),
+            'h.date',
+        );
     }
 }

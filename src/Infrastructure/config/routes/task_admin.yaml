@@ -27,3 +27,8 @@ api_task_admin_change_status:
     path: /task-admin/{id}/change-status
     controller: App\Application\Task\Controller\AdminTaskController::changeStatus
     methods: [PATCH]
+
+api_task_admin_list_history:
+    path: /task-admin/{id}/history
+    controller: App\Application\Task\Controller\AdminTaskController::listHistory
+    methods: [GET]
