@@ -4,10 +4,9 @@ namespace App\Core\Doctrine\History;
 
 use App\Core\Doctrine\Entity\History;
 use App\Core\Doctrine\HistoryType;
-use App\Domain\User\Entity\User;
+use App\Core\Symfony\LoggedUserProvider;
 use DateTimeImmutable;
 use Doctrine\Common\Util\ClassUtils;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Uid\Uuid;
 use UnexpectedValueException;
 
@@ -15,7 +14,7 @@ final readonly class HistoryFactoryService implements HistoryFactory
 {
     public function __construct(
         private HistoryEntityMap $historyEntityMap,
-        private Security $security,
+        private LoggedUserProvider $loggedUserProvider,
     ) {
     }
 
@@ -36,7 +35,11 @@ final readonly class HistoryFactoryService implements HistoryFactory
         $historyClass = $this->historyEntityMap->getHistoryClass($entityClass);
 
         if (is_null($historyClass)) {
-            throw new UnexpectedValueException(sprintf('class %s does not support history', $entityClass));
+            throw new UnexpectedValueException(sprintf('Class `%s` does not support history', $entityClass));
+        }
+
+        if (!class_exists($historyClass)) {
+            throw new UnexpectedValueException(sprintf('History Class `%s` not exists', $historyClass));
         }
 
         return new $historyClass(
@@ -45,7 +48,7 @@ final readonly class HistoryFactoryService implements HistoryFactory
             type: $type,
             date: new DateTimeImmutable(),
             changes: $changes,
-            changedById: $this->security->getUser() instanceof User ? $this->security->getUser()->getId() : null,
+            changedById: $this->loggedUserProvider->getLoggedUserId(),
         );
     }
 
