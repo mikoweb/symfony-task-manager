@@ -3,6 +3,7 @@
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
     ->exclude('var')
+    ->exclude('docker-mysql')
 ;
 
 return (new PhpCsFixer\Config())
